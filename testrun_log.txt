@@ -1,0 +1,36 @@
+05:44:35  Running with dbt=1.10.15
+05:44:35  Registered adapter: postgres=1.9.1
+05:44:36  Found 8 models, 1 snapshot, 12 data tests, 461 macros
+05:44:36  
+05:44:36  Concurrency: 1 threads (target='dev')
+05:44:36  
+05:44:37  1 of 12 START test no_invalid_order_amounts_fact_orders_order_amount ........... [RUN]
+05:44:37  1 of 12 PASS no_invalid_order_amounts_fact_orders_order_amount ................. [PASS in 0.14s]
+05:44:37  2 of 12 START test not_null_dim_customers_city ................................. [RUN]
+05:44:37  2 of 12 PASS not_null_dim_customers_city ....................................... [PASS in 0.09s]
+05:44:37  3 of 12 START test not_null_dim_customers_customer_id .......................... [RUN]
+05:44:37  3 of 12 PASS not_null_dim_customers_customer_id ................................ [PASS in 0.22s]
+05:44:37  4 of 12 START test not_null_dim_customers_customer_name ........................ [RUN]
+05:44:38  4 of 12 PASS not_null_dim_customers_customer_name .............................. [PASS in 0.21s]
+05:44:38  5 of 12 START test not_null_dim_customers_dbt_scd_id ........................... [RUN]
+05:44:38  5 of 12 PASS not_null_dim_customers_dbt_scd_id ................................. [PASS in 0.07s]
+05:44:38  6 of 12 START test not_null_fact_orders_customer_id ............................ [RUN]
+05:44:38  6 of 12 PASS not_null_fact_orders_customer_id .................................. [PASS in 0.07s]
+05:44:38  7 of 12 START test not_null_fact_orders_order_amount ........................... [RUN]
+05:44:38  7 of 12 PASS not_null_fact_orders_order_amount ................................. [PASS in 0.07s]
+05:44:38  8 of 12 START test not_null_fact_orders_order_date ............................. [RUN]
+05:44:38  8 of 12 PASS not_null_fact_orders_order_date ................................... [PASS in 0.08s]
+05:44:38  9 of 12 START test not_null_fact_orders_order_id ............................... [RUN]
+05:44:38  9 of 12 PASS not_null_fact_orders_order_id ..................................... [PASS in 0.18s]
+05:44:38  10 of 12 START test relationships_fact_orders_customer_id__customer_id__ref_dim_customers_  [RUN]
+05:44:38  10 of 12 PASS relationships_fact_orders_customer_id__customer_id__ref_dim_customers_  [PASS in 0.09s]
+05:44:38  11 of 12 START test unique_dim_customers_dbt_scd_id ............................ [RUN]
+05:44:38  11 of 12 PASS unique_dim_customers_dbt_scd_id .................................. [PASS in 0.09s]
+05:44:38  12 of 12 START test unique_fact_orders_order_id ................................ [RUN]
+05:44:39  12 of 12 PASS unique_fact_orders_order_id ...................................... [PASS in 0.19s]
+05:44:39  
+05:44:39  Finished running 12 data tests in 0 hours 0 minutes and 2.24 seconds (2.24s).
+05:44:39  
+05:44:39  Completed successfully
+05:44:39  
+05:44:39  Done. PASS=12 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=12

@@ -1,0 +1,12 @@
+version: 2
+
+models:
+  - name: orders_summary
+    description: "A summary table for orders"
+    columns:
+      - name: order_id
+        description: "The primary key for orders"
+      - name: customer_id
+        description: "ID of the customer"
+      - name: total_amount
+        description: "Total amount of the order"
