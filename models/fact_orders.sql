@@ -6,12 +6,13 @@
 select
     order_id,
     order_date,
+    extract(year from order_date)::int as order_year,
     customer_id,
     order_amount,
     status
 from public.raw_orders
 
 {% if is_incremental() %}
--- On incremental run, only take rows with order_id greater than the max already loaded
+-- On incremental run, only load new orders
 where order_id > (select coalesce(max(order_id), 0) from {{ this }})
 {% endif %}
