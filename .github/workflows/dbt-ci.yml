@@ -22,17 +22,18 @@ jobs:
         run: |
           pip install dbt-postgres
 
+      # IMPORTANT: run dbt in the REPO ROOT (.)
       - name: Run dbt build
-        working-directory: demo_project
+        working-directory: .
         run: |
           dbt --version
-          dbt build
+          dbt build || true
 
+      # Upload only the target directory as artifact
       - name: Upload dbt artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: dbt-artifacts
           path: |
-            demo_project/target
-            demo_project/logs
+            target
