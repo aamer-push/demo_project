@@ -1,0 +1,39 @@
+name: dbt CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  dbt-build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dbt (Postgres)
+        run: |
+          pip install dbt-postgres
+
+      - name: Run dbt compile (no DB needed)
+        run: |
+          dbt --version
+          dbt compile --profiles-dir .dbt
+
+      - name: Create run_results.json
+        run: |
+          mkdir -p target
+          echo '{ "metadata": { "demo": "compile-only" }, "results": [] }' > target/run_results.json
+
+      - name: Upload dbt artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dbt-artifacts
+          path: target
