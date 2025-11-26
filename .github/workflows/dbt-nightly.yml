@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: '0 0 * * *'
 
-  # Allow manual runs from the GitHub UI (useful for demos)
+  # Allow manual runs from GitHub UI
   workflow_dispatch:
 
 jobs:
@@ -25,21 +25,18 @@ jobs:
         run: |
           pip install dbt-postgres
 
-      # Use the CI profile in .dbt/profiles.yml (we created earlier)
-      - name: Run dbt compile (nightly)
+      # ⭐ IMPORTANT ⭐
+      # This compiles dbt using your CI profile at .dbt/profiles.yml
+      - name: Run dbt compile (no DB needed)
         run: |
           dbt --version
           dbt compile --profiles-dir .dbt
 
-      # Create a simple run_results.json (for artifacts / demo)
+      # Create minimal run_results.json so artifacts exist
       - name: Create run_results.json
         run: |
           mkdir -p target
           echo '{ "metadata": { "job": "nightly", "mode": "compile-only" }, "results": [] }' > target/run_results.json
 
-      # Upload artifacts so we can inspect from Actions
-      - name: Upload dbt nightly artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: dbt-nightly-artifacts
-          path: target
+      # Upload artifacts from the target folder
+      - nam

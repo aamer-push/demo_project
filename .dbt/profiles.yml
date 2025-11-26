@@ -1,4 +1,4 @@
-demo_project:
+default:
   target: ci
   outputs:
     ci:
@@ -9,3 +9,4 @@ demo_project:
       port: 5432
       dbname: dummy
       schema: public
+      threads: 1
