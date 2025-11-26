@@ -22,18 +22,21 @@ jobs:
         run: |
           pip install dbt-postgres
 
-      # IMPORTANT: run dbt in the REPO ROOT (.)
-      - name: Run dbt build
-        working-directory: .
+      # STEP: Run compile (no DB connection required)
+      - name: Run dbt compile (no database needed)
         run: |
           dbt --version
-          dbt build || true
+          dbt compile
 
-      # Upload only the target directory as artifact
+      # Fake run_results.json for artifacts 
+      - name: Create run_results.json
+        run: |
+          mkdir -p target
+          echo '{ "metadata": { "demo": "compile-only" }, "results": [] }' > target/run_results.json
+
+      # Upload the artifacts
       - name: Upload dbt artifacts
-        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: dbt-artifacts
-          path: |
-            target
+          path: target
