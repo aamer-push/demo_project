@@ -22,19 +22,16 @@ jobs:
         run: |
           pip install dbt-postgres
 
-      # STEP: Run compile (no DB connection required)
-      - name: Run dbt compile (no database needed)
+      - name: Run dbt compile (no DB needed)
         run: |
           dbt --version
-          dbt compile
+          dbt compile --profiles-dir .dbt
 
-      # Fake run_results.json for artifacts 
       - name: Create run_results.json
         run: |
           mkdir -p target
           echo '{ "metadata": { "demo": "compile-only" }, "results": [] }' > target/run_results.json
 
-      # Upload the artifacts
       - name: Upload dbt artifacts
         uses: actions/upload-artifact@v4
         with:
