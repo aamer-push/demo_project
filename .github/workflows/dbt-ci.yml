@@ -18,22 +18,21 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Install dbt (Postgres adapter)
+      - name: Install dbt (Postgres)
         run: |
           pip install dbt-postgres
 
       - name: Run dbt build
+        working-directory: demo_project
         run: |
           dbt --version
-          dbt debug || true
           dbt build
-        working-directory: .
 
-      - name: Upload dbt artifacts (logs + target)
+      - name: Upload dbt artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: dbt-artifacts
           path: |
-            logs
-            target
+            demo_project/target
+            demo_project/logs
